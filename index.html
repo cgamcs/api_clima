@@ -12,6 +12,8 @@
 </head>
 <body>
 
+    <div class="absolute -z-10 inset-0 h-full w-full bg-black"><div class="absolute inset-0 bg-[linear-gradient(#00ffff15_1px,transparent_1px),linear-gradient(90deg,#00ffff15_1px,transparent_1px)] bg-[size:40px_40px]"></div><div class="absolute inset-0 bg-[radial-gradient(circle_400px_at_50%_300px,#0000ff15,transparent)]"></div><div class="absolute bottom-0 h-1/2 w-full bg-gradient-to-t from-[#ff00ff10] to-transparent"></div></div>
+
     <div class="container mx-auto ">
         <h1 id="titulo" class="text-4xl mt-5 text-white font-bold uppercase text-center">Busca el Clima</h1>
         <div class="max-w-lg mx-auto ">
@@ -22,19 +24,25 @@
                 </div>
             </div>
             
-            <form id="formulario" class="mt-10 " action="#" method="POST">
-                <div class="mt-5">
-                    <input 
-                        type="text" 
-                        name="ciudad"
-                        id="ciudad"
-                        placeholder="Escribe tu Ciudad"
-                        class="w-full p-2 rounded"
+            <form id="formulario" class="mt-10" action="#" method="POST">
+                <div class="mt-5 relative group">
+                    <input
+                      type="text"
+                      name="ciudad"
+                      id="ciudad"
+                      required
+                      class="border w-full bg-white px-4 pt-6 pb-2 text-sm peer rounded-lg outline-none"
                     />
+                    <label
+                      for="email"
+                      class="text-gray-600 hover:cursor-text transform transition-all absolute top-0 left-0 h-full flex items-center pl-4 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-0 peer-valid:-translate-y-0"
+                    >
+                      Ciudad
+                    </label>
                 </div>
                 <div class="mt-5">
                     <select 
-                        class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
+                        class="block appearance-none w-full bg-white border border-gray-200 text-gray-600 px-4 pt-4 pb-4 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
                         id="pais"
                     >
                         <option disabled selected value="">-- Seleccione --</option>
@@ -50,7 +58,7 @@
 
                 <input 
                     type="submit"
-                    class="mt-5 w-full bg-yellow-500 p-3  uppercase font-bold cursor-pointer rounded"
+                    class="mt-5 w-full bg-indigo-500 text-white p-3 uppercase font-bold cursor-pointer rounded-lg"
                     value="Obtener Clima"
                 />
 
