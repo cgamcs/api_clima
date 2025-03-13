@@ -29,14 +29,33 @@ function consultarAPI(ciudad, pais) {
     fetch(url)
         .then(respuesta => respuesta.json())
         .then(datos => {
-            console.log(datos)
+            limpiarHTML()
+
             if(datos.cod === "404") {
                 mostrarAlerta('Ciudad no encontrada')
                 return
             }
+
+            // Imprime la respuesta en el HTML
             mostrarClima(datos)
         })
 }
+
+function mostrarClima(datos) {
+    const { main: { temp, temp_max, temp_min } } = datos
+
+    const actual = document.createElement('P')
+    actual.innerHTML = `${kelvinACentigrados(temp)} &#8451;`
+    actual.classList.add('font-bold', 'text-6xl')
+
+    const resultadoDiv = document.createElement('DIV')
+    resultadoDiv.classList.add('text-center', 'text-white')
+    resultadoDiv.appendChild(actual)
+
+    resultado.appendChild(resultadoDiv)
+}
+
+const kelvinACentigrados = grados => parseInt(grados - 273.15)
 
 function mostrarAlerta(mensaje) {
     const alerta = document.querySelector('.alerta')
@@ -50,5 +69,10 @@ function mostrarAlerta(mensaje) {
         setTimeout(() => {
             alerta.remove()
         }, 3000)
+    }
+}
+function limpiarHTML() {
+    while(resultado.firstChild) {
+        resultado.removeChild(resultado.firstChild)
     }
 }
