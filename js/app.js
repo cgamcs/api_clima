@@ -35,6 +35,7 @@ function consultarAPI(ciudad, pais) {
         .then(datos => {
             limpiarHTML()
 
+            console.log(datos)
             if(datos.cod === "404") {
                 mostrarAlerta('Ciudad no encontrada')
                 return
@@ -46,7 +47,7 @@ function consultarAPI(ciudad, pais) {
 }
 
 function mostrarClima(datos) {
-    const { name, main: { temp, temp_max, temp_min } } = datos
+    const { name, main: { temp, temp_max, temp_min, humidity }, sys: { sunrise, sunset } } = datos
 
     // Temperatura actual
     const actual = document.createElement('P')
