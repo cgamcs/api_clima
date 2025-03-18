@@ -1,6 +1,6 @@
 const container = document.querySelector('.container')
-const resultado = document.querySelector('#resultado')
-const formulario = document.querySelector('#formulario')
+const resultado = document.querySelector('#weather-card')
+const formulario = document.querySelector('#search-form')
 const buscador = document.querySelector('#buscador')
 
 window.addEventListener('load', () => {
@@ -11,8 +11,11 @@ function buscarClima(e) {
     e.preventDefault()
 
     // Validar
-    const ciudad = document.querySelector('#ciudad').value
-    const pais = document.querySelector('#pais').value
+    const ciudad = document.querySelector('#location-input').value
+    const pais = document.querySelector('#country-select').value
+
+    console.log(ciudad)
+    console.log(pais)
 
     if(ciudad === '' || pais === '') {
         mostrarAlerta('Todos los campos son obligatorios')
@@ -50,43 +53,8 @@ function mostrarClima(datos) {
     const { name, main: { temp, temp_max, temp_min, humidity }, sys: { sunrise, sunset } } = datos
 
     // Temperatura actual
-    const actual = document.createElement('P')
-    actual.innerHTML = `${kelvinACentigrados(temp)}°`
-    actual.classList.add('font-semibold', 'text-9xl')
-
-    // Titulo
-    const nombreCiudad = document.createElement('P')
-    nombreCiudad.textContent = `${name}`
-    nombreCiudad.classList.add('font-semibold', 'text-6xl', 'mb-1')
-
-    // Temperatura actual
-    const tempMaxima = document.createElement('P')
-    tempMaxima.innerHTML = `Max: ${kelvinACentigrados(temp_max)} &#8451;`
-    tempMaxima.classList.add('text-xl')
-
-    // Temperatura actual
-    const tempMinima = document.createElement('P')
-    tempMinima.innerHTML = `Min: ${kelvinACentigrados(temp_min)} &#8451;`
-    tempMinima.classList.add('text-xl')
-
-    // Div de temperatura maxima y minima
-    const resultadoMaxMin = document.createElement('DIV')
-    resultadoMaxMin.classList.add('flex', 'gap-5', 'text-sm')
-    resultadoMaxMin.appendChild(tempMaxima)
-    resultadoMaxMin.appendChild(tempMinima)
-
-    // Div con la informacion
-    const infoDiv = document.createElement('DIV')
-    infoDiv.appendChild(nombreCiudad)
-    infoDiv.appendChild(resultadoMaxMin)
-
-    // Div contenedor
-    const resultadoDiv = document.createElement('DIV')
-    resultadoDiv.classList.add('text-white', 'flex', 'gap-5', 'items-end')
-    resultadoDiv.appendChild(actual)
-    resultadoDiv.appendChild(infoDiv)
-
-    resultado.appendChild(resultadoDiv)
+    const actual = document.querySelector('#temperature-display')
+    actual.innerHTML = `${kelvinACentigrados(temp)}`
 }
 
 const kelvinACentigrados = grados => parseInt(grados - 273.15)
@@ -105,6 +73,7 @@ function mostrarAlerta(mensaje) {
         }, 3000)
     }
 }
+
 function limpiarHTML() {
     while(resultado.firstChild) {
         resultado.removeChild(resultado.firstChild)
