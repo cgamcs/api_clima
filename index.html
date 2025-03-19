@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>El Tiempo - Aplicación del Clima</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-  <style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Tiempo - Aplicación del Clima</title>
+
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
@@ -75,7 +78,7 @@
     .search-button:active {
       transform: scale(0.95);
     }
-    
+
     /* Estilo personalizado para el select */
     .search-select {
       appearance: none;
@@ -87,479 +90,350 @@
   </style>
 </head>
 <body>
-  <div id="app-container" class="min-h-screen bg-gradient-to-b from-blue-400 via-sky-500 to-blue-600 p-4 md:p-8 transition-colors duration-1000 ease-in-out relative overflow-hidden">
-    <div id="weather-animation" class="absolute inset-0 overflow-hidden"></div>
-    
-    <div class="mx-auto max-w-md">
-      <form id="search-form" class="mb-8 opacity-0 transform -translate-y-4" style="transition: opacity 0.5s ease, transform 0.5s ease">
-        <div class="flex flex-col md:flex-row gap-2 mb-2">
-          <div class="relative flex-grow">
-            <input 
-              type="text" 
-              id="location-input"
-              placeholder="Ciudad..." 
-              value="Madrid" 
-              class="search-input w-full bg-white/90 backdrop-blur-sm border-0 h-12 rounded-full shadow-lg px-5 outline-none"
-            >
-          </div>
-          
-          <div class="relative md:w-1/3">
-            <select 
-              id="country-select" 
-              class="search-select w-full bg-white/90 backdrop-blur-sm border-0 h-12 rounded-full shadow-lg px-5 outline-none pr-10 text-gray-700"
-            >
-              <option value="España">España</option>
-              <option value="Argentina">Argentina</option>
-              <option value="México">México</option>
-              <option value="Colombia">Colombia</option>
-              <option value="Chile">Chile</option>
-              <option value="Perú">Perú</option>
-              <option value="Ecuador">Ecuador</option>
-              <option value="Venezuela">Venezuela</option>
-              <option value="Estados Unidos">Estados Unidos</option>
-              <option value="Canadá">Canadá</option>
-              <option value="Brasil">Brasil</option>
-              <option value="Francia">Francia</option>
-              <option value="Italia">Italia</option>
-              <option value="Alemania">Alemania</option>
-              <option value="Reino Unido">Reino Unido</option>
-            </select>
-          </div>
-        </div>
+    <div id="app-container" class="min-h-screen bg-gradient-to-b from-blue-400 via-sky-500 to-blue-600 p-4 md:p-8 transition-colors duration-1000 ease-in-out relative overflow-hidden">
+        <div id="weather-animation" class="absolute inset-0 overflow-hidden"></div>
         
-        <button 
-          type="submit" 
-          class="search-button w-full rounded-full h-12 bg-blue-500 hover:bg-blue-600 flex items-center justify-center text-white gap-2 shadow-lg"
-        >
-          <i class='bx bx-search text-xl'></i>
-          <span>Buscar</span>
-        </button>
-      </form>
-      
-      <div id="weather-card" class="opacity-0 transform translate-y-4" style="transition: opacity 0.5s ease, transform 0.5s ease">
-        <div class="overflow-hidden bg-white/90 backdrop-blur-md shadow-xl rounded-3xl border-0">
-          <div class="p-6 text-center">
-            <h2 id="location-display" class="text-2xl font-medium text-gray-800">Madrid</h2>
-            <p id="country-display" class="text-lg text-gray-600 mb-2">España</p>
-            <p id="date-display" class="text-sm text-gray-500 mb-6"></p>
-            
-            <div id="weather-icon-container" class="flex justify-center mb-4 opacity-0 scale-90" style="transition: opacity 0.5s ease, transform 0.5s ease">
-              <i id="weather-icon" class='bx bx-sun text-yellow-500 text-8xl'></i>
+        <div class="mx-auto max-w-md">
+        <form id="search-form" class="mb-8 opacity-0 transform -translate-y-4" style="transition: opacity 0.5s ease, transform 0.5s ease">
+            <div class="flex flex-col md:flex-row gap-2 mb-2">
+            <div class="relative flex-grow">
+                <input 
+                type="text" 
+                id="location-input"
+                placeholder="Ciudad..." 
+                value="Monterrey" 
+                class="search-input w-full bg-white/90 backdrop-blur-sm border-0 h-12 rounded-full shadow-lg px-5 outline-none"
+                >
             </div>
             
-            <div class="flex justify-center items-baseline mb-6">
-              <span id="temperature-display" class="text-6xl font-light text-gray-800">22</span>
-              <span class="text-2xl font-light text-gray-600">°C</span>
+            <div class="relative md:w-1/3">
+                <select 
+                id="country-select" 
+                class="search-select w-full bg-white/90 backdrop-blur-sm border-0 h-12 rounded-full shadow-lg px-5 outline-none pr-10 text-gray-700"
+                >
+                    <option value="España">España</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="México" selected>México</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Chile">Chile</option>
+                    <option value="Perú">Perú</option>
+                    <option value="Ecuador">Ecuador</option>
+                    <option value="Venezuela">Venezuela</option>
+                    <option value="Estados Unidos">Estados Unidos</option>
+                    <option value="Canadá">Canadá</option>
+                    <option value="Brasil">Brasil</option>
+                    <option value="Francia">Francia</option>
+                    <option value="Italia">Italia</option>
+                    <option value="Alemania">Alemania</option>
+                    <option value="Reino Unido">Reino Unido</option>
+                </select>
+            </div>
             </div>
             
-            <p id="condition-display" class="text-lg text-gray-700 mb-6">Soleado</p>
+            <button 
+            type="submit" 
+            class="search-button w-full rounded-full h-12 bg-blue-500 hover:bg-blue-600 flex items-center justify-center text-white gap-2 shadow-lg"
+            >
+            <i class='bx bx-search text-xl'></i>
+            <span>Buscar</span>
+            </button>
+        </form>
+        
+        <div id="weather-card" class="opacity-0 transform translate-y-4" style="transition: opacity 0.5s ease, transform 0.5s ease">
+            <div class="overflow-hidden bg-white/90 backdrop-blur-md shadow-xl rounded-3xl border-0">
+            <div class="p-6 text-center">
+                <h2 id="location-display" class="text-2xl font-medium text-gray-800">Monterrey</h2>
+                <p id="country-display" class="text-lg text-gray-600 mb-2">México</p>
+                <p id="date-display" class="text-sm text-gray-500 mb-6"></p>
+                
+                <div id="weather-icon-container" class="flex justify-center mb-4 opacity-0 scale-90" style="transition: opacity 0.5s ease, transform 0.5s ease">
+                    <i id="weather-icon" class='bx bx-sun text-yellow-500 text-8xl'></i>
+                </div>
+                
+                <div class="flex justify-center items-baseline mb-6">
+                    <span id="temperature-display" class="text-6xl font-light text-gray-800">22</span>
+                    <span class="text-2xl font-light text-gray-600">°C</span>
+                </div>
+                
+                <p id="condition-display" class="text-lg text-gray-700 mb-6">Soleado</p>
+                
+                <div class="flex justify-center gap-6 mb-8">
+                    <div class="text-center">
+                        <p class="text-sm text-gray-500">Min</p>
+                        <p id="min-temp-display" class="text-xl font-medium text-blue-500">18°</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-sm text-gray-500">Max</p>
+                        <p id="max-temp-display" class="text-xl font-medium text-red-500">26°</p>
+                    </div>
+                </div>
+            </div>
             
-            <div class="flex justify-center gap-6 mb-8">
-              <div class="text-center">
-                <p class="text-sm text-gray-500">Min</p>
-                <p id="min-temp-display" class="text-xl font-medium text-blue-500">18°</p>
-              </div>
-              <div class="text-center">
-                <p class="text-sm text-gray-500">Max</p>
-                <p id="max-temp-display" class="text-xl font-medium text-red-500">26°</p>
-              </div>
+            <div class="bg-gray-50 p-6 rounded-b-3xl">
+                <div class="grid grid-cols-2 gap-4">
+                <div class="weather-card bg-white p-4 rounded-2xl shadow-sm">
+                    <div class="flex items-center gap-3">
+                    <div class="bg-blue-100 p-2 rounded-full">
+                        <i class='bx bx-droplet text-blue-500'></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500">Humedad</p>
+                        <p id="humidity-display" class="text-lg font-medium">65%</p>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="weather-card bg-white p-4 rounded-2xl shadow-sm">
+                    <div class="flex items-center gap-3">
+                    <div class="bg-orange-100 p-2 rounded-full">
+                        <i class='bx bx-sun text-orange-500'></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500">Amanecer</p>
+                        <p id="sunrise-display" class="text-lg font-medium">06:45</p>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="weather-card bg-white p-4 rounded-2xl shadow-sm">
+                    <div class="flex items-center gap-3">
+                    <div class="bg-purple-100 p-2 rounded-full">
+                        <i class='bx bx-moon text-purple-500'></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500">Atardecer</p>
+                        <p id="sunset-display" class="text-lg font-medium">20:30</p>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="weather-card bg-white p-4 rounded-2xl shadow-sm">
+                    <div class="flex items-center gap-3">
+                    <div class="bg-green-100 p-2 rounded-full">
+                        <i class='bx bx-refresh text-green-500'></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500">Actualizado</p>
+                        <p id="updated-display" class="text-lg font-medium"></p>
+                    </div>
+                    </div>
+                </div>
+                </div>
             </div>
-          </div>
-          
-          <div class="bg-gray-50 p-6 rounded-b-3xl">
-            <div class="grid grid-cols-2 gap-4">
-              <div class="weather-card bg-white p-4 rounded-2xl shadow-sm">
-                <div class="flex items-center gap-3">
-                  <div class="bg-blue-100 p-2 rounded-full">
-                    <i class='bx bx-droplet text-blue-500'></i>
-                  </div>
-                  <div>
-                    <p class="text-sm text-gray-500">Humedad</p>
-                    <p id="humidity-display" class="text-lg font-medium">65%</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="weather-card bg-white p-4 rounded-2xl shadow-sm">
-                <div class="flex items-center gap-3">
-                  <div class="bg-orange-100 p-2 rounded-full">
-                    <i class='bx bx-sun text-orange-500'></i>
-                  </div>
-                  <div>
-                    <p class="text-sm text-gray-500">Amanecer</p>
-                    <p id="sunrise-display" class="text-lg font-medium">06:45</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="weather-card bg-white p-4 rounded-2xl shadow-sm">
-                <div class="flex items-center gap-3">
-                  <div class="bg-purple-100 p-2 rounded-full">
-                    <i class='bx bx-moon text-purple-500'></i>
-                  </div>
-                  <div>
-                    <p class="text-sm text-gray-500">Atardecer</p>
-                    <p id="sunset-display" class="text-lg font-medium">20:30</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="weather-card bg-white p-4 rounded-2xl shadow-sm">
-                <div class="flex items-center gap-3">
-                  <div class="bg-green-100 p-2 rounded-full">
-                    <i class='bx bx-refresh text-green-500'></i>
-                  </div>
-                  <div>
-                    <p class="text-sm text-gray-500">Actualizado</p>
-                    <p id="updated-display" class="text-lg font-medium"></p>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
+        </div>
     </div>
-  </div>
 
-  <script>
-    // Estado inicial
-    let weatherData = {
-      location: "Madrid",
-      country: "España",
-      temperature: 22,
-      maxTemp: 26,
-      minTemp: 18,
-      humidity: 65,
-      sunrise: "06:45",
-      sunset: "20:30",
-      condition: "Soleado",
-      date: new Date()
-    };
-    
-    // Elementos del DOM
-    const appContainer = document.getElementById('app-container');
-    const weatherAnimation = document.getElementById('weather-animation');
-    const searchForm = document.getElementById('search-form');
-    const locationInput = document.getElementById('location-input');
-    const countrySelect = document.getElementById('country-select');
-    const weatherCard = document.getElementById('weather-card');
-    const weatherIconContainer = document.getElementById('weather-icon-container');
-    
-    // Elementos de visualización
-    const locationDisplay = document.getElementById('location-display');
-    const countryDisplay = document.getElementById('country-display');
-    const dateDisplay = document.getElementById('date-display');
-    const weatherIcon = document.getElementById('weather-icon');
-    const temperatureDisplay = document.getElementById('temperature-display');
-    const conditionDisplay = document.getElementById('condition-display');
-    const minTempDisplay = document.getElementById('min-temp-display');
-    const maxTempDisplay = document.getElementById('max-temp-display');
-    const humidityDisplay = document.getElementById('humidity-display');
-    const sunriseDisplay = document.getElementById('sunrise-display');
-    const sunsetDisplay = document.getElementById('sunset-display');
-    const updatedDisplay = document.getElementById('updated-display');
-    
-    // Función para formatear la fecha
-    function formatDate(date) {
-      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      return date.toLocaleDateString('es-ES', options);
-    }
-    
-    // Función para formatear la hora
-    function formatTime(date) {
-      return date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
-    }
-    
-    // Función para actualizar la interfaz
-    function updateUI() {
-      // Actualizar textos
-      locationDisplay.textContent = weatherData.location;
-      countryDisplay.textContent = weatherData.country;
-      dateDisplay.textContent = formatDate(weatherData.date);
-      temperatureDisplay.textContent = weatherData.temperature;
-      conditionDisplay.textContent = weatherData.condition;
-      minTempDisplay.textContent = `${weatherData.minTemp}°`;
-      maxTempDisplay.textContent = `${weatherData.maxTemp}°`;
-      humidityDisplay.textContent = `${weatherData.humidity}%`;
-      sunriseDisplay.textContent = weatherData.sunrise;
-      sunsetDisplay.textContent = weatherData.sunset;
-      updatedDisplay.textContent = formatTime(new Date());
-      
-      // Actualizar icono según condición
-      updateWeatherIcon(weatherData.condition);
-      
-      // Actualizar fondo según condición
-      updateBackground(weatherData.condition);
-      
-      // Actualizar animaciones
-      updateWeatherAnimation(weatherData.condition);
-    }
-    
-    // Función para actualizar el icono del clima
-    function updateWeatherIcon(condition) {
-      weatherIconContainer.style.opacity = '0';
-      weatherIconContainer.style.transform = 'scale(0.9)';
-      
-      setTimeout(() => {
-        switch(condition.toLowerCase()) {
-          case 'soleado':
-            weatherIcon.className = 'bx bx-sun text-yellow-500 text-8xl';
-            break;
-          case 'parcialmente nublado':
-            weatherIcon.className = 'bx bx-cloud text-gray-400 text-8xl';
-            break;
-          case 'lluvioso':
-            weatherIcon.className = 'bx bx-cloud-rain text-blue-400 text-8xl';
-            break;
-          case 'tormenta':
-            weatherIcon.className = 'bx bx-cloud-lightning text-purple-500 text-8xl';
-            break;
-          case 'nieve':
-            weatherIcon.className = 'bx bx-cloud-snow text-blue-200 text-8xl';
-            break;
-          case 'ventoso':
-            weatherIcon.className = 'bx bx-wind text-teal-500 text-8xl';
-            break;
-          default:
-            weatherIcon.className = 'bx bx-sun text-yellow-500 text-8xl';
-        }
-        
-        weatherIconContainer.style.opacity = '1';
-        weatherIconContainer.style.transform = 'scale(1)';
-      }, 300);
-    }
-    
-    // Función para actualizar el fondo según la condición
-    function updateBackground(condition) {
-      const isDay = new Date().getHours() > 6 && new Date().getHours() < 20;
-      
-      if (!isDay) {
-        appContainer.className = 'min-h-screen bg-gradient-to-b from-indigo-900 via-purple-900 to-indigo-800 p-4 md:p-8 transition-colors duration-1000 ease-in-out relative overflow-hidden';
-        return;
-      }
-      
-      switch(condition.toLowerCase()) {
-        case 'soleado':
-          appContainer.className = 'min-h-screen bg-gradient-to-b from-blue-400 via-sky-500 to-blue-600 p-4 md:p-8 transition-colors duration-1000 ease-in-out relative overflow-hidden';
-          break;
-        case 'parcialmente nublado':
-          appContainer.className = 'min-h-screen bg-gradient-to-b from-blue-300 via-gray-300 to-blue-400 p-4 md:p-8 transition-colors duration-1000 ease-in-out relative overflow-hidden';
-          break;
-        case 'lluvioso':
-          appContainer.className = 'min-h-screen bg-gradient-to-b from-gray-400 via-gray-500 to-gray-600 p-4 md:p-8 transition-colors duration-1000 ease-in-out relative overflow-hidden';
-          break;
-        case 'tormenta':
-          appContainer.className = 'min-h-screen bg-gradient-to-b from-gray-600 via-purple-800 to-gray-700 p-4 md:p-8 transition-colors duration-1000 ease-in-out relative overflow-hidden';
-          break;
-        default:
-          appContainer.className = 'min-h-screen bg-gradient-to-b from-blue-400 via-sky-500 to-blue-600 p-4 md:p-8 transition-colors duration-1000 ease-in-out relative overflow-hidden';
-      }
-    }
-    
-    // Función para actualizar las animaciones del clima
-    function updateWeatherAnimation(condition) {
-      // Limpiar animaciones anteriores
-      weatherAnimation.innerHTML = '';
-      
-      switch(condition.toLowerCase()) {
-        case 'soleado':
-          // Crear rayos de sol
-          for (let i = 0; i < 10; i++) {
-            const ray = document.createElement('div');
-            ray.className = 'sun-ray';
-            ray.style.width = `${100 + Math.random() * 150}px`;
-            ray.style.height = `${100 + Math.random() * 150}px`;
-            ray.style.left = `${Math.random() * 100}%`;
-            ray.style.top = `${Math.random() * 100}%`;
-            ray.style.animationDelay = `${Math.random() * 4}s`;
-            weatherAnimation.appendChild(ray);
-          }
-          break;
-        case 'parcialmente nublado':
-          // Crear nubes
-          for (let i = 0; i < 6; i++) {
-            const cloud = document.createElement('div');
-            cloud.className = 'cloud';
-            cloud.style.width = `${100 + Math.random() * 100}px`;
-            cloud.style.height = `${60 + Math.random() * 40}px`;
-            cloud.style.top = `${20 + i * 30}px`;
-            cloud.style.animationDuration = `${20 + i * 5}s`;
-            cloud.style.animationDelay = `${Math.random() * 10}s`;
-            weatherAnimation.appendChild(cloud);
-          }
-          break;
-        case 'lluvioso':
-          // Crear gotas de lluvia
-          for (let i = 0; i < 40; i++) {
-            const drop = document.createElement('div');
-            drop.className = 'rain-drop';
-            drop.style.height = `${10 + Math.random() * 15}px`;
-            drop.style.left = `${Math.random() * 100}%`;
-            drop.style.animationDuration = `${0.6 + Math.random() * 0.5}s`;
-            drop.style.animationDelay = `${Math.random() * 2}s`;
-            weatherAnimation.appendChild(drop);
-          }
-          break;
-      }
-    }
-    
-    // Función para obtener datos del clima según ubicación y país
-    function getWeatherData(location, country) {
-      // En una aplicación real, aquí se haría una llamada a una API de clima
-      // Por ahora, simulamos datos según la ubicación
-      
-      // Datos predeterminados
-      let data = {
-        temperature: 22,
-        maxTemp: 26,
-        minTemp: 18,
-        humidity: 65,
-        sunrise: "06:45",
-        sunset: "20:30",
-        condition: "Soleado"
-      };
-      
-      // Ciudades de España
-      if (country === "España") {
-        if (location.toLowerCase() === "barcelona") {
-          data = {
-            temperature: 24,
-            maxTemp: 28,
-            minTemp: 20,
-            humidity: 60,
-            sunrise: "06:50",
-            sunset: "20:35",
-            condition: "Parcialmente nublado"
-          };
-        } else if (location.toLowerCase() === "sevilla") {
-          data = {
-            temperature: 30,
-            maxTemp: 35,
-            minTemp: 25,
-            humidity: 45,
-            sunrise: "07:00",
-            sunset: "20:45",
-            condition: "Soleado"
-          };
-        } else if (location.toLowerCase() === "bilbao") {
-          data = {
-            temperature: 18,
-            maxTemp: 22,
-            minTemp: 15,
-            humidity: 75,
-            sunrise: "06:40",
-            sunset: "20:25",
-            condition: "Lluvioso"
-          };
-        }
-      }
-      // Ciudades de Argentina
-      else if (country === "Argentina") {
-        if (location.toLowerCase() === "buenos aires") {
-          data = {
-            temperature: 20,
-            maxTemp: 24,
-            minTemp: 16,
-            humidity: 70,
-            sunrise: "07:15",
-            sunset: "19:30",
-            condition: "Parcialmente nublado"
-          };
-        } else if (location.toLowerCase() === "córdoba") {
-          data = {
+    <script>
+        // Estado inicial
+        let weatherData = {
+            location: "Monterrey",
+            country: "México",
             temperature: 22,
-            maxTemp: 27,
+            maxTemp: 26,
             minTemp: 18,
-            humidity: 55,
-            sunrise: "07:10",
-            sunset: "19:25",
-            condition: "Soleado"
-          };
+            humidity: 65,
+            sunrise: "06:45",
+            sunset: "20:30",
+            condition: "Soleado",
+            date: new Date()
+        };
+        
+        // Elementos del DOM
+        const appContainer = document.getElementById('app-container');
+        const weatherAnimation = document.getElementById('weather-animation');
+        const searchForm = document.getElementById('search-form');
+        const locationInput = document.getElementById('location-input');
+        const countrySelect = document.getElementById('country-select');
+        const weatherCard = document.getElementById('weather-card');
+        const weatherIconContainer = document.getElementById('weather-icon-container');
+        
+        // Elementos de visualización
+        const locationDisplay = document.getElementById('location-display');
+        const countryDisplay = document.getElementById('country-display');
+        const dateDisplay = document.getElementById('date-display');
+        const weatherIcon = document.getElementById('weather-icon');
+        const temperatureDisplay = document.getElementById('temperature-display');
+        const conditionDisplay = document.getElementById('condition-display');
+        const minTempDisplay = document.getElementById('min-temp-display');
+        const maxTempDisplay = document.getElementById('max-temp-display');
+        const humidityDisplay = document.getElementById('humidity-display');
+        const sunriseDisplay = document.getElementById('sunrise-display');
+        const sunsetDisplay = document.getElementById('sunset-display');
+        const updatedDisplay = document.getElementById('updated-display');
+        
+        // Función para formatear la fecha
+        function formatDate(date) {
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        return date.toLocaleDateString('es-ES', options);
         }
-      }
-      // Ciudades de México
-      else if (country === "México") {
-        if (location.toLowerCase() === "ciudad de méxico" || location.toLowerCase() === "méxico") {
-          data = {
-            temperature: 25,
-            maxTemp: 29,
-            minTemp: 18,
-            humidity: 50,
-            sunrise: "06:30",
-            sunset: "19:45",
-            condition: "Parcialmente nublado"
-          };
-        } else if (location.toLowerCase() === "cancún") {
-          data = {
-            temperature: 32,
-            maxTemp: 35,
-            minTemp: 28,
-            humidity: 80,
-            sunrise: "06:15",
-            sunset: "19:30",
-            condition: "Soleado"
-          };
+        
+        // Función para formatear la hora
+        function formatTime(date) {
+        return date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
         }
-      }
-      
-      return data;
-    }
-    
-    // Manejar el envío del formulario
-    searchForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const location = locationInput.value.trim();
-      const country = countrySelect.value;
-      
-      if (location) {
-        // Actualizar ubicación y país
-        weatherData.location = location;
-        weatherData.country = country;
         
-        // Obtener datos del clima
-        const weatherInfo = getWeatherData(location, country);
+        // Función para actualizar la interfaz
+        function updateUI() {
+            // Actualizar textos
+            locationDisplay.textContent = weatherData.location;
+            countryDisplay.textContent = weatherData.country;
+            dateDisplay.textContent = formatDate(weatherData.date);
+            temperatureDisplay.textContent = weatherData.temperature;
+            conditionDisplay.textContent = weatherData.condition;
+            minTempDisplay.textContent = `${weatherData.minTemp}°`;
+            maxTempDisplay.textContent = `${weatherData.maxTemp}°`;
+            humidityDisplay.textContent = `${weatherData.humidity}%`;
+            sunriseDisplay.textContent = weatherData.sunrise;
+            sunsetDisplay.textContent = weatherData.sunset;
+            updatedDisplay.textContent = formatTime(new Date());
+            
+            // Actualizar icono según condición
+            updateWeatherIcon(weatherData.condition);
+            
+            // Actualizar fondo según condición
+            updateBackground(weatherData.condition);
+            
+            // Actualizar animaciones
+            updateWeatherAnimation(weatherData.condition);
+        }
         
-        // Actualizar datos
-        weatherData.temperature = weatherInfo.temperature;
-        weatherData.maxTemp = weatherInfo.maxTemp;
-        weatherData.minTemp = weatherInfo.minTemp;
-        weatherData.humidity = weatherInfo.humidity;
-        weatherData.sunrise = weatherInfo.sunrise;
-        weatherData.sunset = weatherInfo.sunset;
-        weatherData.condition = weatherInfo.condition;
+        // Función para actualizar el icono del clima
+        function updateWeatherIcon(condition) {
+            weatherIconContainer.style.opacity = '0';
+            weatherIconContainer.style.transform = 'scale(0.9)';
+            
+            setTimeout(() => {
+                switch(condition.toLowerCase()) {
+                    case 'soleado':
+                        weatherIcon.className = 'bx bx-sun text-yellow-500 text-8xl';
+                        break;
+                    case 'parcialmente nublado':
+                        weatherIcon.className = 'bx bx-cloud text-gray-400 text-8xl';
+                        break;
+                    case 'lluvioso':
+                        weatherIcon.className = 'bx bx-cloud-rain text-blue-400 text-8xl';
+                        break;
+                    case 'tormenta':
+                        weatherIcon.className = 'bx bx-cloud-lightning text-purple-500 text-8xl';
+                        break;
+                    case 'nieve':
+                        weatherIcon.className = 'bx bx-cloud-snow text-blue-200 text-8xl';
+                        break;
+                    case 'ventoso':
+                        weatherIcon.className = 'bx bx-wind text-teal-500 text-8xl';
+                        break;
+                    default:
+                        weatherIcon.className = 'bx bx-sun text-yellow-500 text-8xl';
+                    }
+                    
+                weatherIconContainer.style.opacity = '1';
+                weatherIconContainer.style.transform = 'scale(1)';
+            }, 300);
+        }
         
-        // Actualizar la interfaz
-        updateUI();
-      }
-    });
-    
-    // Inicializar la aplicación
-    document.addEventListener('DOMContentLoaded', function() {
-      // Mostrar la fecha actual
-      weatherData.date = new Date();
-      
-      // Actualizar la interfaz
-      updateUI();
-      
-      // Mostrar elementos con animación
-      setTimeout(() => {
-        searchForm.style.opacity = '1';
-        searchForm.style.transform = 'translateY(0)';
+        // Función para actualizar el fondo según la condición
+        function updateBackground(condition) {
+        const isDay = new Date().getHours() > 6 && new Date().getHours() < 20;
         
-        setTimeout(() => {
-          weatherCard.style.opacity = '1';
-          weatherCard.style.transform = 'translateY(0)';
-          
-          setTimeout(() => {
-            weatherIconContainer.style.opacity = '1';
-            weatherIconContainer.style.transform = 'scale(1)';
-          }, 300);
-        }, 200);
-      }, 100);
-    });
-  </script>
-  <script src="/js/app.js"></script>
-  <script src="/js/config.js"></script>
+        if (!isDay) {
+            appContainer.className = 'min-h-screen bg-gradient-to-b from-indigo-900 via-purple-900 to-indigo-800 p-4 md:p-8 transition-colors duration-1000 ease-in-out relative overflow-hidden';
+            return;
+        }
+        
+            switch(condition.toLowerCase()) {
+                case 'soleado':
+                appContainer.className = 'min-h-screen bg-gradient-to-b from-blue-400 via-sky-500 to-blue-600 p-4 md:p-8 transition-colors duration-1000 ease-in-out relative overflow-hidden';
+                break;
+                case 'parcialmente nublado':
+                appContainer.className = 'min-h-screen bg-gradient-to-b from-blue-300 via-gray-300 to-blue-400 p-4 md:p-8 transition-colors duration-1000 ease-in-out relative overflow-hidden';
+                break;
+                case 'lluvioso':
+                appContainer.className = 'min-h-screen bg-gradient-to-b from-gray-400 via-gray-500 to-gray-600 p-4 md:p-8 transition-colors duration-1000 ease-in-out relative overflow-hidden';
+                break;
+                case 'tormenta':
+                appContainer.className = 'min-h-screen bg-gradient-to-b from-gray-600 via-purple-800 to-gray-700 p-4 md:p-8 transition-colors duration-1000 ease-in-out relative overflow-hidden';
+                break;
+                default:
+                appContainer.className = 'min-h-screen bg-gradient-to-b from-blue-400 via-sky-500 to-blue-600 p-4 md:p-8 transition-colors duration-1000 ease-in-out relative overflow-hidden';
+            }
+        }
+        
+        // Función para actualizar las animaciones del clima
+        function updateWeatherAnimation(condition) {
+        // Limpiar animaciones anteriores
+        weatherAnimation.innerHTML = '';
+        
+        switch(condition.toLowerCase()) {
+            case 'soleado':
+                // Crear rayos de sol
+                for (let i = 0; i < 10; i++) {
+                    const ray = document.createElement('div');
+                    ray.className = 'sun-ray';
+                    ray.style.width = `${100 + Math.random() * 150}px`;
+                    ray.style.height = `${100 + Math.random() * 150}px`;
+                    ray.style.left = `${Math.random() * 100}%`;
+                    ray.style.top = `${Math.random() * 100}%`;
+                    ray.style.animationDelay = `${Math.random() * 4}s`;
+                    weatherAnimation.appendChild(ray);
+                }
+                break;
+            case 'parcialmente nublado':
+                // Crear nubes
+                for (let i = 0; i < 6; i++) {
+                    const cloud = document.createElement('div');
+                    cloud.className = 'cloud';
+                    cloud.style.width = `${100 + Math.random() * 100}px`;
+                    cloud.style.height = `${60 + Math.random() * 40}px`;
+                    cloud.style.top = `${20 + i * 30}px`;
+                    cloud.style.animationDuration = `${20 + i * 5}s`;
+                    cloud.style.animationDelay = `${Math.random() * 10}s`;
+                    weatherAnimation.appendChild(cloud);
+                }
+                break;
+            case 'lluvioso':
+            // Crear gotas de lluvia
+                for (let i = 0; i < 40; i++) {
+                    const drop = document.createElement('div');
+                    drop.className = 'rain-drop';
+                    drop.style.height = `${10 + Math.random() * 15}px`;
+                    drop.style.left = `${Math.random() * 100}%`;
+                    drop.style.animationDuration = `${0.6 + Math.random() * 0.5}s`;
+                    drop.style.animationDelay = `${Math.random() * 2}s`;
+                    weatherAnimation.appendChild(drop);
+                }
+                break;
+            }
+        }
+        
+        // Inicializar la aplicación
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mostrar la fecha actual
+            weatherData.date = new Date();
+            
+            // Actualizar la interfaz
+            updateUI();
+            
+            // Mostrar elementos con animación
+            setTimeout(() => {
+                searchForm.style.opacity = '1';
+                searchForm.style.transform = 'translateY(0)';
+                
+                setTimeout(() => {
+                weatherCard.style.opacity = '1';
+                weatherCard.style.transform = 'translateY(0)';
+                
+                setTimeout(() => {
+                    weatherIconContainer.style.opacity = '1';
+                    weatherIconContainer.style.transform = 'scale(1)';
+                }, 300);
+                }, 200);
+            }, 100);
+        });
+    </script>
+
+    <script src="/js/app.js" defer></script>
+    <script src="/js/config.js" defer></script>
 </body>
 </html>

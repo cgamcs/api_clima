@@ -46,3 +46,8 @@
   background-size: cover;
   background-position: center;
 }
+
+#weather-icon::before {
+  content: var(--before-content, ''); /* Usa la variable CSS */
+  /* Otros estilos para el :before */
+}
